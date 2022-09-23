@@ -32,4 +32,22 @@ router.get('/customerWithOrders/:id', async (req, res, next) => {
 });
 
 
+router.put('/customers/:id', async (req, res, next) => {
+  let { id } = req.params;
+
+  let customer = await customersInterface.update(req.body, id);
+  res.status(200).send(customer);
+});
+
+router.delete('/customers/:id', async (req, res, next) => {
+  try {
+    let { id } = req.params;
+
+    let message = await customersInterface.delete(id);
+    res.status(200).send(message);
+  } catch (err) {
+    next(err.message);
+  }
+});
+
 module.exports = router;
