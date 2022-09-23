@@ -1,0 +1,31 @@
+{
+  "name": "jgs-api-server",
+  "version": "1.0.0",
+  "description": "lab04",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint **/*.js",
+    "test": "jest --verbose --coverage",
+    "test-watch": "jest --watchAll --verbose --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Junyoungson808/jgs-api-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Junyoungson808/jgs-api-server/issues"
+  },
+  "homepage": "https://github.com/Junyoungson808/jgs-api-server#readme",
+  "dependencies": {
+    "eslint": "^8.23.1",
+    "init": "^0.1.2",
+    "pg": "^8.8.0",
+    "sequelize": "^6.23.1",
+    "sequelize-cli": "^6.4.1",
+    "sqlite3": "^5.1.1"
+  }
+}
