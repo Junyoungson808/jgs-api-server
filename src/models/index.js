@@ -2,8 +2,8 @@
 
 require('dotenv').config();
 const { Sequelize, DataTypes } = require('sequelize');
-const customersSchema = require('./people.schema');
-const ordersSchema = require('./food.schema');
+const customersSchema = require('./customers.schema');
+const catSchema = require('./cat.schema');
 const ModelInterface = require('./modelinterface');
 
 const DATABASE_URL = process.env.NODE_ENV === 'test'
@@ -11,11 +11,12 @@ const DATABASE_URL = process.env.NODE_ENV === 'test'
   : process.env.DATABASE_URL;
 
 // instantiates our database
-const sequelizeDatabase = new Sequelize(DATABASE_URL);
+const sequelizeDatabase = new Sequelize(DATABASE_URL,
+    dial);
 
 //create FoodModel /  ClothesModel with our Schema
 const CustomersModel = customersSchema(sequelizeDatabase, DataTypes);
-const OrdersModel = ordersSchema(sequelizeDatabase, DataTypes);
+const OrdersModel = catSchema(sequelizeDatabase, DataTypes);
 
 CustomersModel.hasMany(OrdersModel);
 OrdersModel.belongsTo(CustomersModel);

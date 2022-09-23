@@ -25,12 +25,12 @@ describe(' Testing Rest API ', () => {
     let responseOne = await (await request.post('/customers')).setEncoding({
       name: 'tester',
       age: 42,
-      pronouns: 'they/them'
+      pronouns: 'they/them',
     });
     let responseTwo = await (await request.post('/customers')).setEncoding({
       name: 'MrTester',
       age: 42,
-      pronouns: 'he/him'
+      pronouns: 'he/him',
     });
 
     expect(responseOne.status).toEqual(200);
