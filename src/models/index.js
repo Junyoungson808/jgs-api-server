@@ -3,7 +3,7 @@
 require('dotenv').config();
 const { Sequelize, DataTypes } = require('sequelize');
 const customersSchema = require('./customers.schema');
-const catSchema = require('./cat.schema');
+const catSchema = require('./cats.schema');
 const ModelInterface = require('./modelinterface');
 
 const DATABASE_URL = process.env.NODE_ENV === 'test'
@@ -11,8 +11,16 @@ const DATABASE_URL = process.env.NODE_ENV === 'test'
   : process.env.DATABASE_URL;
 
 // instantiates our database
-const sequelizeDatabase = new Sequelize(DATABASE_URL,
-    dial);
+// const sequelizeDatabase = new Sequelize(DATABASE_URL);
+
+const sequelizeDatabase = new Sequelize(DATABASE_URL, {
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+});
 
 //create FoodModel /  ClothesModel with our Schema
 const CustomersModel = customersSchema(sequelizeDatabase, DataTypes);
@@ -23,6 +31,6 @@ OrdersModel.belongsTo(CustomersModel);
 
 module.exports = {
   sequelizeDatabase,
-  customerInterface: new ModelInterface(CustomersModel),
-  ordersInterface: new ModelInterface(OrdersModel),
+  customersInterface: new ModelInterface(CustomersModel),
+  // ordersInterface: new ModelInterface(OrdersModel),
 };

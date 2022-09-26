@@ -7,7 +7,7 @@ module.exports = (sequelizeDatabase, DataTypes) => {
       allowNull: false,
     },
     color: {
-      type: DataTypes.String,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     age: {
