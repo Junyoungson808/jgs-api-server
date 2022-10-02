@@ -2,9 +2,9 @@
 
 require('dotenv').config();
 const { Sequelize, DataTypes } = require('sequelize');
-const customersSchema = require('./customers.schema');
-const catSchema = require('./cats.schema');
-const ModelInterface = require('./modelinterface');
+const candySchema = require('./candy.schema');
+const carSchema = require('./car.schema');
+const ModelInterface = require('./interface');
 
 const DATABASE_URL = process.env.NODE_ENV === 'test'
   ? 'sqlite:memory'
@@ -23,14 +23,14 @@ const sequelizeDatabase = new Sequelize(DATABASE_URL, {
 });
 
 //create FoodModel /  ClothesModel with our Schema
-const CustomersModel = customersSchema(sequelizeDatabase, DataTypes);
-const OrdersModel = catSchema(sequelizeDatabase, DataTypes);
+const candyModel = candySchema(sequelizeDatabase, DataTypes);
+const carModel = carSchema(sequelizeDatabase, DataTypes);
 
-CustomersModel.hasMany(OrdersModel);
-OrdersModel.belongsTo(CustomersModel);
+// candyModel.hasMany(OrdersModel);
+// carModel.belongsTo(CustomersModel);
 
 module.exports = {
   sequelizeDatabase,
-  customersInterface: new ModelInterface(CustomersModel),
-  // ordersInterface: new ModelInterface(OrdersModel),
+  candyInterface: new ModelInterface(candyModel),
+  carInterface: new ModelInterface(carModel),
 };
